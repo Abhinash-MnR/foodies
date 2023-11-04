@@ -1,85 +1,102 @@
 import * as React from "react";
-import { StyleSheet, View, ImageBackground, Image } from "react-native";
+import { StyleSheet, View, Image, ScrollView } from "react-native";
 
-import { Avatar } from "react-native-paper";
-import { Button, Card, Text } from "react-native-paper";
-
-const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
+import { Card, Text } from "react-native-paper";
 
 const Home = () => {
   return (
-    <View>
-      <Text style={styles.HeadingText}>Explore Recipes</Text>
-      <Image
-        style={styles.ImageStyle}
-        source={require("../assets/add-btn.svg")}
-      />
-      <Card>
-        <View style={{ position: "relative" }}>
-          <Card.Cover
-            style={{
-              height: 194,
-              filter: "brightness(0.5)",
-              background: `linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5))})`,
-              backgroundPosition: "center",
-              backgroundSize: "cover",
-              backgroundRepeat: "no-repeat",
-              //  linear-gradient(190deg, #fa7c30 30%, rgba(0, 0, 0, 0)30%), url(${`https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1`});
-            }}
-            source={{
-              uri: "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-            }}
-          />
-          <View
-            style={{
-              position: "absolute",
-              bottom: 6,
-              left: 0,
-              marginLeft: 12,
-              paddingRight: 12,
-            }}
-          >
-            <Text style={styles.TextTitle}>Weekly Pic</Text>
-            <Text style={styles.TextsubTitle}>
-              This Italian pasta and steak will warm up the faintest of hearts.
-            </Text>
+    <ScrollView>
+      <View style={{ padding: 20 }}>
+        <Text style={styles.HeadingText}>Explore Recipes</Text>
+        <Image
+          style={styles.ImageStyle}
+          source={require("../assets/add-btn.svg")}
+        />
+        <Card>
+          <View style={{ position: "relative" }}>
+            <Card.Cover
+              style={{
+                height: 194,
+                filter: "brightness(0.5)",
+                background: `linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5))})`,
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+                //  linear-gradient(190deg, #fa7c30 30%, rgba(0, 0, 0, 0)30%), url(${`https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1`});
+              }}
+              source={{
+                uri: "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+              }}
+            />
+            <View
+              style={{
+                position: "absolute",
+                bottom: 6,
+                left: 0,
+                marginLeft: 12,
+                paddingRight: 12,
+              }}
+            >
+              <Text style={styles.TextTitle}>Weekly Pic</Text>
+              <Text style={styles.TextsubTitle}>
+                This Italian pasta and steak will warm up the faintest of
+                hearts.
+              </Text>
+            </View>
           </View>
+        </Card>
+
+        <View style={styles.RecentContainer}>
+          <Text style={styles.recentText}>Recent Receipe</Text>
+          <Text style={styles.viewAllText}>View all</Text>
         </View>
-      </Card>
 
-      <View style={styles.RecentContainer}>
-        <Text style={styles.recentText}>Recent Receipe</Text>
-        <Text style={styles.viewAllText}>View all</Text>
+        <View style={styles.RecentCard}>
+          <Card style={{ width: "50%", marginRight: 7 }}>
+            <Image
+              style={{ width: "inherit", height: 140, borderRadius: 12 }}
+              source={{
+                uri: "https://images.pexels.com/photos/2641886/pexels-photo-2641886.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+              }}
+            />
+          </Card>
+          <Card style={{ width: "50%", marginLeft: 7 }}>
+            <Image
+              style={{ width: "inherit", height: 140, borderRadius: 12 }}
+              source={{
+                uri: "https://images.pexels.com/photos/1633525/pexels-photo-1633525.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+              }}
+            />
+            {/* <Card.Cover source={{ uri: "https://images.pexels.com/photos/1633525/pexels-photo-1633525.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",height:"inherit"}} /> */}
+          </Card>
+        </View>
+
+        <View style={styles.RecentContainer}>
+          <Text style={styles.recentText}>Recommended</Text>
+          <Text style={styles.viewAllText}>View all</Text>
+        </View>
+
+        <View style={styles.RecentCard}>
+          <Card style={{ width: "50%", marginRight: 7 }}>
+            <Image
+              style={{ width: "inherit", height: 140, borderRadius: 12 }}
+              source={{
+                uri: "https://images.pexels.com/photos/2641886/pexels-photo-2641886.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+              }}
+            />
+          </Card>
+          <Card style={{ width: "50%", marginLeft: 7 }}>
+            <Image
+              style={{ width: "inherit", height: 140, borderRadius: 12 }}
+              source={{
+                uri: "https://images.pexels.com/photos/1633525/pexels-photo-1633525.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+              }}
+            />
+            {/* <Card.Cover source={{ uri: "https://images.pexels.com/photos/1633525/pexels-photo-1633525.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",height:"inherit"}} /> */}
+          </Card>
+        </View>
       </View>
-
-      <View style={styles.RecentCard}>
-        <Card style={{width:"50%", marginRight:7}}>
-          <Image style={{width: "inherit", height: 140,borderRadius:12}} source={{ uri: "https://images.pexels.com/photos/2641886/pexels-photo-2641886.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"}} />
-        </Card>
-        <Card  style={{width:"50%",marginLeft:7}}>
-        <Image style={{width: "inherit", height: 140,borderRadius:12}} source={{ uri: "https://images.pexels.com/photos/1633525/pexels-photo-1633525.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"}} />
-          {/* <Card.Cover source={{ uri: "https://images.pexels.com/photos/1633525/pexels-photo-1633525.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",height:"inherit"}} /> */}
-        </Card>
-      </View>
-
-
-      <View style={styles.RecentContainer}>
-        <Text style={styles.recentText}>Recommended</Text>
-        <Text style={styles.viewAllText}>View all</Text>
-      </View>
-
-      <View style={styles.RecentCard}>
-        <Card style={{width:"50%", marginRight:7}}>
-          <Image style={{width: "inherit", height: 140,borderRadius:12}} source={{ uri: "https://images.pexels.com/photos/2641886/pexels-photo-2641886.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"}} />
-        </Card>
-        <Card  style={{width:"50%",marginLeft:7}}>
-        <Image style={{width: "inherit", height: 140,borderRadius:12}} source={{ uri: "https://images.pexels.com/photos/1633525/pexels-photo-1633525.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"}} />
-          {/* <Card.Cover source={{ uri: "https://images.pexels.com/photos/1633525/pexels-photo-1633525.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",height:"inherit"}} /> */}
-        </Card>
-      </View>
-
-
-    </View>
+    </ScrollView>
   );
 };
 
@@ -128,8 +145,8 @@ const styles = StyleSheet.create({
     lineHeight: 24,
   },
   RecentContainer: {
-   //  flex: 1,
-     justifyContent: "space-between",
+    //  flex: 1,
+    justifyContent: "space-between",
     marginTop: 14,
     flexDirection: "row",
     marginBottom: 14,
@@ -154,11 +171,10 @@ const styles = StyleSheet.create({
     color: "#6AA920",
   },
 
-  RecentCard:{
-    height:140,
-    flexDirection:"row",
-    alignItems:"flex-start",
-    justifyContent:"center"
-
-  }
+  RecentCard: {
+    height: 140,
+    flexDirection: "row",
+    alignItems: "flex-start",
+    justifyContent: "center",
+  },
 });

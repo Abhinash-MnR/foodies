@@ -1,37 +1,93 @@
-// import * as React from 'react';
-// import { BottomNavigation, Text } from 'react-native-paper';
+import React from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { BottomNavigation } from "react-native-paper";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { CommonActions } from "@react-navigation/native";
+import Home from "./Home";
+import Grocery from "./Grocery";
+import Explore from "./Explore";
 
-// // const MusicRoute = () => <Text>Music</Text>;
+const Tab = createBottomTabNavigator();
 
-// // const AlbumsRoute = () => <Text>Albums</Text>;
+export default function BottomNavigationTab() {
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: true,
+      }}
+      tabBar={({ navigation, state, descriptors, insets }) => (
+        <BottomNavigation.Bar
+          navigationState={state}
+          safeAreaInsets={insets}
+          onTabPress={({ route, preventDefault }) => {
+            const event = navigation.emit({
+              type: "tabPress",
+              target: route.key,
+              canPreventDefault: true,
+            });
 
-// // const RecentsRoute = () => <Text>Recents</Text>;
+            if (event.defaultPrevented) {
+              preventDefault();
+            } else {
+              navigation.dispatch({
+                ...CommonActions.navigate(route.name, route.params),
+                target: state.key,
+              });
+            }
+          }}
+          renderIcon={({ route, focused, color }) => {
+            const { options } = descriptors[route.key];
+            if (options.tabBarIcon) {
+              return options.tabBarIcon({ focused, color, size: 24 });
+            }
 
-// // const NotificationsRoute = () => <Text>Notifications</Text>;
+            return null;
+          }}
+          getLabelText={({ route }) => {
+            const { options } = descriptors[route.key];
+            const label =
+              options.tabBarLabel !== undefined
+                ? options.tabBarLabel
+                : options.title !== undefined
+                ? options.title
+                : route.title;
 
-// function BottomNavigation() {
-//     const [index, setIndex] = React.useState(0);
-//     const [routes] = React.useState([
-//       { key: 'music', title: 'Favorites', focusedIcon: 'heart', unfocusedIcon: 'heart-outline'},
-//       { key: 'albums', title: 'Albums', focusedIcon: 'album' },
-//       { key: 'recents', title: 'Recents', focusedIcon: 'history' },
-//       { key: 'notifications', title: 'Notifications', focusedIcon: 'bell', unfocusedIcon: 'bell-outline' },
-//     ]);
-  
-//     const renderScene = BottomNavigation.SceneMap({
-//       music: <Text>Music</Text>,
-//     //   albums: AlbumsRoute,
-//     //   recents: RecentsRoute,
-//     //   notifications: NotificationsRoute,
-//     });
-  
-//   return (
-//     <BottomNavigation
-//       navigationState={{ index, routes }}
-//       onIndexChange={setIndex}
-//       renderScene={renderScene}
-//     />
-//   )
-// }
+            return label;
+          }}
+        />
+      )}
+    >
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        options={{
+          tabBarLabel: "Home",
+          tabBarIcon: ({ color, size }) => {
+            return <Icon name="home" size={size} color={color} />;
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Grocery"
+        component={Grocery}
+        options={{
+          tabBarLabel: "Settings",
+          tabBarIcon: ({ color, size }) => {
+            return <Icon name="cog" size={size} color={color} />;
+          },
+        }}
+      />
 
-// export default BottomNavigation
+      <Tab.Screen
+        name="Explore"
+        component={Explore}
+        options={{
+          tabBarLabel: "Explore",
+          tabBarIcon: ({ color, size }) => {
+            return <Icon name="cog" size={size} color={color} />;
+          },
+        }}
+      />
+    </Tab.Navigator>
+  );
+}

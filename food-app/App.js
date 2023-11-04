@@ -1,23 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, StyleSheet,Dimensions, Text, View } from 'react-native';
-import Home from './app/Home';
-import { BottomNavigation } from 'react-native-paper';
-import Grocery from './app/Grocery';
+import { StatusBar } from "expo-status-bar";
+import { SafeAreaView, StyleSheet, Dimensions } from "react-native";
+
+import { NavigationContainer } from "@react-navigation/native";
+import BottomNavigationTab from "./app/BottomNavigation";
 
 export default function App() {
-  const {width,height} = Dimensions.get("screen");
-  console.log(width,height);
+  const { width, height } = Dimensions.get("screen");
+  console.log(width, height);
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.Maincontainer}  >
-     {/* <Home/> */}
-     <Grocery/>
-     </View>
-     {/* <View>
-     <BottomNavigation/>
-     </View> */}
-   
       <StatusBar style="auto" />
+
+      <NavigationContainer>
+        <BottomNavigationTab />
+      </NavigationContainer>
     </SafeAreaView>
   );
 }
@@ -25,9 +21,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
-  Maincontainer:{
-    padding:20
-  }
 });
